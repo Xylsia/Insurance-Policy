@@ -10,11 +10,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequestDTO {
+public class LanguagePreferenceDTO {
 
-    @NotEmpty(message = "field email cannot be empty")
-    private String email;
+    @NotEmpty(message = "field id cannot be empty")
+    private Long id;
 
-    @NotEmpty(message = "field password cannot be empty")
-    private String password;
+    @NotEmpty(message = "field language cannot be empty")
+    private String language;
 }

@@ -10,11 +10,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequestDTO {
+public class PasswordResetDTO {
 
-    @NotEmpty(message = "field email cannot be empty")
-    private String email;
-
-    @NotEmpty(message = "field password cannot be empty")
-    private String password;
+    @NotEmpty(message = "field newPassword cannot be empty")
+    private String newPassword;
 }

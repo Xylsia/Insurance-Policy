@@ -23,7 +23,7 @@ public interface IInsurancePolicyRepository extends JpaRepository<InsurancePolic
             "AND (LOWER(a.lastName) = LOWER(agentLastName) OR :agentLastName IS NULL) " +
             "AND (LOWER(ip.insuranceItem) = LOWER(insuranceItem) OR :insuranceItem IS NULL) " +
             "AND (:estimatedPrice IS NULL OR ip.estimatedPrice = :estimatedPrice)")
-    List<InsurancePolicy> findInsurancePoliciesByParameters(
+    List<InsurancePolicy> filterInsurancePoliciesByParameters(
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate,
             @Param("requesterFirstName") String requesterFirstName,
@@ -50,7 +50,8 @@ public interface IInsurancePolicyRepository extends JpaRepository<InsurancePolic
             JOIN requester r ON r.id = p.requester_id
             JOIN agent a ON a.id = p.agent_id
             WHERE LOCATE(:value, CONCAT_WS(
-            '\\ ', p.date_created, r.first_name, r.last_name, a.first_name, a.last_name, p.insurance_item, p.estimated_price)) > 0
+            '\\ ', p.date_created, r.first_name, r.last_name, a.first_name, a.last_name,
+             p.insurance_item, p.estimated_price)) > 0
             """,
             nativeQuery = true)
     List<InsurancePolicy> searchInsurancePolicies(

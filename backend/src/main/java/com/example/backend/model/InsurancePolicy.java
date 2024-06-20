@@ -38,6 +38,10 @@ public class InsurancePolicy {
     private Set<CoverageType> coverages;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private InsuranceItem insuranceItem;
+
+    @Column(nullable = false)
     private Double estimatedPrice;
 
     @Column(nullable = false)

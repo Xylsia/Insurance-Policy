@@ -1,6 +1,7 @@
 package com.example.backend.mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IMapper<Model, DTO> {
 
@@ -8,4 +9,6 @@ public interface IMapper<Model, DTO> {
     DTO toDTO(Model model);
     List<Model> toModel(List<DTO> dto);
     List<DTO> toDTO(List<Model> model);
+    Model toModel(Optional<DTO> dto);
+    DTO toDTO(Optional<Model> model);
 }

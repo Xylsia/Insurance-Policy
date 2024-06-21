@@ -15,8 +15,8 @@ public class JavaMailSenderConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.office365.com");
         mailSender.setPort(587);
-        mailSender.setUsername(""); // Set email address
-        mailSender.setPassword(""); // Set password
+        mailSender.setUsername("your_email_address@email.com"); // Set email address
+        mailSender.setPassword("your_password_123"); // Set password
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.starttls.enable", "true");

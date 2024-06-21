@@ -24,12 +24,14 @@ public class SwaggerConfig {
 
         return new OpenAPI()
                 .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
-                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
+                .components(new Components()
+                        .addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
                 .info(new Info().description("Insurance Policy API")
                         .title("Insurance Policy API")
                         .version("1.0.0")
                         .license(new License().name("insurance_policy")))
-                .externalDocs(new ExternalDocumentation().description("Insurance Policy external docs"))
+                .externalDocs(new ExternalDocumentation()
+                        .description("Insurance Policy external docs"))
                 .servers(List.of(server));
     }
 

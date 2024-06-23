@@ -31,11 +31,11 @@ public class TimeLoggingAspect {
         }
     }
 
-    @AfterThrowing(value = "within(com.example.backend..controller..*)", throwing = "exception")
-    public void logControllerException(JoinPoint joinPoint, Throwable exception) {
-        log.error("Controller Exception: {}, with cause: {}",
-                joinPoint.getSignature().toShortString(), exception.getClass().getSimpleName());
-    }
+//    @AfterThrowing(value = "within(com.example.backend..controller..*)", throwing = "exception")
+//    public void logControllerException(JoinPoint joinPoint, Throwable exception) {
+//        log.error("Controller Exception: {}, with cause: {}",
+//                joinPoint.getSignature().toShortString(), exception.getClass().getSimpleName());
+//    }
 
     @AfterThrowing(value = "within(com.example.backend..service..*)", throwing = "exception")
     public void logServiceException(JoinPoint joinPoint, Throwable exception) {

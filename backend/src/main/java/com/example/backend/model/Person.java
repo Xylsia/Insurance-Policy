@@ -10,8 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@MappedSuperclass
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Person {
 
     @Id

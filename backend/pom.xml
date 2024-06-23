@@ -22,20 +22,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>3.3.0</version>
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<groupId>org.springframework.boot</groupId>-->
-<!--					<artifactId>spring-boot-starter-logging</artifactId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--			<version>3.3.0</version>-->
-<!--		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
@@ -65,13 +52,6 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<version>8.4.0</version>
 		</dependency>
-
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.modelmapper/modelmapper &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.modelmapper</groupId>-->
-<!--			<artifactId>modelmapper</artifactId>-->
-<!--			<version>3.2.0</version>-->
-<!--		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
 		<dependency>

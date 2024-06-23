@@ -13,15 +13,15 @@ import java.util.List;
 @Repository
 public interface IInsurancePolicyRepository extends JpaRepository<InsurancePolicy, Long> {
 
-    @Query("SELECT ip FROM InsurancePolicy ip" +
+    @Query("SELECT ip FROM InsurancePolicy ip " +
             "JOIN ip.requester r " +
             "JOIN ip.agent a " +
-            "WHERE (ip.dateCreated BETWEEN :startDate AND :endDate OR :startDate IS NULL OR :endDate IS NULL) " +
-            "AND (LOWER(r.firstName) = LOWER(requesterFirstName) OR :requesterFirstName IS NULL) " +
-            "AND (LOWER(r.lastName) = LOWER(requesterLastName) OR :requesterLastName IS NULL) " +
-            "AND (LOWER(a.firstName) = LOWER(agentFirstName) OR :agentFirstName IS NULL) " +
-            "AND (LOWER(a.lastName) = LOWER(agentLastName) OR :agentLastName IS NULL) " +
-            "AND (LOWER(ip.insuranceItem) = LOWER(insuranceItem) OR :insuranceItem IS NULL) " +
+            "WHERE (:startDate IS NULL OR :endDate IS NULL OR ip.dateCreated BETWEEN :startDate AND :endDate) " +
+            "AND (:requesterFirstName IS NULL OR LOWER(r.firstName) = LOWER(:requesterFirstName)) " +
+            "AND (:requesterLastName IS NULL OR LOWER(r.lastName) = LOWER(:requesterLastName)) " +
+            "AND (:agentFirstName IS NULL OR LOWER(a.firstName) = LOWER(:agentFirstName)) " +
+            "AND (:agentLastName IS NULL OR LOWER(a.lastName) = LOWER(:agentLastName)) " +
+            "AND (:insuranceItem IS NULL OR LOWER(ip.insuranceItem) = LOWER(:insuranceItem)) " +
             "AND (:estimatedPrice IS NULL OR ip.estimatedPrice = :estimatedPrice)")
     List<InsurancePolicy> filterInsurancePoliciesByParameters(
             @Param("startDate") LocalDate startDate,
@@ -45,13 +45,13 @@ public interface IInsurancePolicyRepository extends JpaRepository<InsurancePolic
     );
 
     @Query(value = """
-            SELECT p.*
-            FROM insurance_policy p
-            JOIN requester r ON r.id = p.requester_id
-            JOIN agent a ON a.id = p.agent_id
+            SELECT ip.*
+            FROM insurance_policy ip
+            JOIN requester r ON r.id = ip.requester_id
+            JOIN agent a ON a.id = ip.agent_id
             WHERE LOCATE(:value, CONCAT_WS(
-            '\\ ', p.date_created, r.first_name, r.last_name, a.first_name, a.last_name,
-             p.insurance_item, p.estimated_price)) > 0
+            '\\ ', ip.date_created, r.first_name, r.last_name, a.first_name, a.last_name,
+             ip.insurance_item, ip.estimated_price)) > 0
             """,
             nativeQuery = true)
     List<InsurancePolicy> searchInsurancePolicies(

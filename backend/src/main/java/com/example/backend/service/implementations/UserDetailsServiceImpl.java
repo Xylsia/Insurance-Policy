@@ -21,10 +21,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final IAgentRepository agentRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Agent agent = agentRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Agent agent = agentRepository.findByEmail(email);
         if (agent == null) {
-            throw new UsernameNotFoundException("Agent with username: " + username + " not found");
+            throw new UsernameNotFoundException("Agent with username: " + email + " not found");
         }
         Collection<? extends GrantedAuthority> authorities = getAuthorities(agent);
         return new User(agent.getEmail(), agent.getPassword(), authorities);

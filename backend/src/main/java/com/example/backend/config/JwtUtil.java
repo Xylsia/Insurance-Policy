@@ -27,23 +27,23 @@ public class JwtUtil {
     private final String SECRET_KEY = "XxOUNMLNLKOUVSLQNSUMSIILOFOHOODIWpK1gyZAZLY=";
 
     public String createToken(Authentication authentication) {
-        String username = authentication.getName();
+        String email = authentication.getName();
         String roles =
                 authentication.getAuthorities()
                         .stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.joining(","));
 
-        Agent agent = agentRepository.findByUsername(username);
+        Agent agent = agentRepository.findByEmail(email);
         if (agent == null) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(email);
         }
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + EXPIRATION_TIME);
 
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(email)
                 .claim("roles", roles)
                 .claim("userId", agent.getId())
                 .claim("languagePreference", agent.getLanguagePreference())

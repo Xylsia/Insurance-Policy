@@ -45,7 +45,7 @@ public class InsurancePolicyServiceImpl implements IInsurancePolicyService {
         if (existingPolicy.isEmpty()) {
             throw new NoSuchElementException("Insurance Policy with id: " + id + " was not found");
         } else {
-            return insurancePolicyMapper.toDTO(existingPolicy);
+            return insurancePolicyMapper.toDTO(existingPolicy.get());
         }
     }
 

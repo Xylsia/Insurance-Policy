@@ -17,9 +17,6 @@ import java.util.Set;
 public class Agent extends Person {
 
     @Column(nullable = false)
-    private String username;
-
-    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)

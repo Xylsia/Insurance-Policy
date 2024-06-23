@@ -30,13 +30,13 @@ public class RequesterServiceImpl implements IRequesterService {
     public RequesterDTO createRequester(RequesterDTO requesterDTO) {
         String requesterEmail = requesterDTO.getEmail();
         Optional<Requester> existingRequester = requesterRepository.findByEmail(requesterEmail);
-        Optional<Agent> existingAgent = agentRepository.findByEmail(requesterEmail);
+        Agent existingAgent = agentRepository.findByEmail(requesterEmail);
 
         if (existingRequester.isPresent()) {
             throw new IllegalArgumentException("Email already exists for a requester in database");
         }
-        if (existingAgent.isPresent()) {
-            throw new IllegalArgumentException("Email already exists for an agent in database");
+        if (existingAgent != null) {
+            throw new IllegalArgumentException("Email already exists for an agent");
         }
 
         Requester requester = requesterMapper.toModel(requesterDTO);
@@ -70,14 +70,14 @@ public class RequesterServiceImpl implements IRequesterService {
             String requesterEmail = requesterDTO.getEmail();
             Optional<Requester> existingRequesterEmail =
                     requesterRepository.findByEmail(requesterEmail);
-            Optional<Agent> existingAgent = agentRepository.findByEmail(requesterEmail);
+            Agent existingAgent = agentRepository.findByEmail(requesterEmail);
 
             if (existingRequesterEmail.isPresent()) {
                 throw new IllegalArgumentException(
                         "Email already exists for a requester in " + "database");
             }
-            if (existingAgent.isPresent()) {
-                throw new IllegalArgumentException("Email already exists for an agent in database");
+            if (existingAgent != null) {
+                throw new IllegalArgumentException("Email already exists for an agent");
             }
 
             if (Objects.nonNull(requesterDTO.getEmail())) {
@@ -104,7 +104,7 @@ public class RequesterServiceImpl implements IRequesterService {
         if (existingRequester.isEmpty()) {
             throw new NoSuchElementException("Requester with id: " + id + " not found");
         } else {
-            return requesterMapper.toDTO(existingRequester);
+            return requesterMapper.toDTO(existingRequester.get());
         }
     }
 

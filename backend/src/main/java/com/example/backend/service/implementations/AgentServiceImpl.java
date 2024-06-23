@@ -10,6 +10,7 @@ import com.example.backend.repository.IAgentRepository;
 import com.example.backend.repository.IAgentTokenRepository;
 import com.example.backend.repository.IRequesterRepository;
 import com.example.backend.service.interfaces.IAgentService;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,18 +46,27 @@ public class AgentServiceImpl implements IAgentService {
     @Value("${spring.mail.username}")
     private String sender;
 
+//    @PostConstruct
+//    public void encodePasswords() {
+//        List<Agent> agents = agentRepository.findAll();
+//        for (Agent agent : agents) {
+//            String encodedPassword = passwordEncoder.encode(agent.getPassword());
+//            agent.setPassword(encodedPassword);
+//        }
+//        agentRepository.saveAll(agents);
+//    }
+
     @Override
     public AgentDTO createAgent(AgentDTO agentDTO) {
-        String email =
-                agentDTO.getEmail();
+        String email = agentDTO.getEmail();
         String password = UUID.randomUUID().toString();
-        ;
+
         Optional<Requester> existingRequester = requesterRepository.findByEmail(email);
-        Optional<Agent> existingAgent = agentRepository.findByEmail(email);
+        Agent existingAgent = agentRepository.findByEmail(email);
         if (existingRequester.isPresent()) {
             throw new IllegalArgumentException("Email already exists for a requester.");
         }
-        if (existingAgent.isPresent()) {
+        if (existingAgent != null) {
             throw new IllegalArgumentException("Email already exists for an agent");
         }
 
@@ -73,7 +83,7 @@ public class AgentServiceImpl implements IAgentService {
         emailDetails.setSubject("Successful Registration");
         String token = UUID.randomUUID().toString();
         LocalDateTime expiryDate = LocalDateTime.now().plusHours(24);
-        String link = "http: //Localhost:8080/api/agent/initial-Login?token=" + token;
+        String link = "http://localhost:8080/api/agent/initial-login?token=" + token;
 
         String body =
                 "You have been successfully registered. " + "\n\n" + "Use this auto generated " +
@@ -114,12 +124,12 @@ public class AgentServiceImpl implements IAgentService {
             String email = agentDTO.getEmail();
             String password = agentDTO.getPassword();
             Optional<Requester> existingRequester = requesterRepository.findByEmail(email);
-            Optional<Agent> existingAgent = agentRepository.findByEmail(email);
+            Agent existingAgent = agentRepository.findByEmail(email);
 
             if (existingRequester.isPresent()) {
                 throw new IllegalArgumentException("Email already exists for a requester");
             }
-            if (existingAgent.isPresent()) {
+            if (existingAgent != null) {
                 throw new IllegalArgumentException("Email already exists for an agent");
             }
 
@@ -174,7 +184,7 @@ public class AgentServiceImpl implements IAgentService {
         if (existingAgent.isEmpty()) {
             throw new NoSuchElementException("Agent with id: " + id + " not found");
         } else {
-            return agentMapper.toDTO(existingAgent);
+            return agentMapper.toDTO(existingAgent.get());
         }
     }
 
@@ -192,7 +202,7 @@ public class AgentServiceImpl implements IAgentService {
             agent.setLanguagePreference(languagePreferenceDTO.getLanguage());
             agentRepository.save(agent);
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(agent.getUsername());
+            UserDetails userDetails = userDetailsService.loadUserByUsername(agent.getEmail());
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
             return jwtUtils.createToken(authentication);
@@ -215,7 +225,7 @@ public class AgentServiceImpl implements IAgentService {
             agent.setThemePreference(themePreferenceDTO.getTheme());
             agentRepository.save(agent);
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(agent.getUsername());
+            UserDetails userDetails = userDetailsService.loadUserByUsername(agent.getEmail());
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
             return jwtUtils.createToken(authentication);
@@ -243,8 +253,9 @@ public class AgentServiceImpl implements IAgentService {
     }
 
     @Override
-    public void resetPassword(String token, String newPassword) {
-        Optional<AgentToken> existingAgentToken = agentTokenRepository.findByToken(token);
+    public void resetPassword(PasswordResetDTO passwordResetDTO) {
+        Optional<AgentToken> existingAgentToken = agentTokenRepository.findByToken(
+                passwordResetDTO.getToken());
         if (existingAgentToken.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid or Expired Token");
         }
@@ -256,13 +267,13 @@ public class AgentServiceImpl implements IAgentService {
         Agent agent = agentToken.getAgent();
 
         String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*/_-])(?=.*[a-zA-Z]).{8,}$";
-        if (!newPassword.matches(passwordRegex)) {
+        if (!passwordResetDTO.getNewPassword().matches(passwordRegex)) {
             throw new IllegalArgumentException(
                     "Password must be at least 8 characters " +
                             "long with at least one special character, one number, one uppercase " +
                             "letter and one lowercase letter");
         }
-        String encodedPassword = passwordEncoder.encode(newPassword);
+        String encodedPassword = passwordEncoder.encode(passwordResetDTO.getNewPassword());
         agent.setPassword(encodedPassword);
         agentRepository.save(agent);
         agentTokenRepository.delete(agentToken);

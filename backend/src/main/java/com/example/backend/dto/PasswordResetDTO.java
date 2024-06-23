@@ -14,4 +14,7 @@ public class PasswordResetDTO {
 
     @NotEmpty(message = "field newPassword cannot be empty")
     private String newPassword;
+
+    @NotEmpty(message = "field token cannot be empty")
+    private String token;
 }

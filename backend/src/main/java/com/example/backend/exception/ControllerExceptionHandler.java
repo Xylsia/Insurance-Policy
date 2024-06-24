@@ -16,13 +16,13 @@ import java.util.NoSuchElementException;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("MethodArgumentNotValidException - HttpStatus.BAD_REQUEST: {}", e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
+    public ResponseEntity<?> handleNoSuchElementException(NoSuchElementException e) {
         log.error("NoSuchElementException - HttpStatus.NOT_FOUND: {}", e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
@@ -41,13 +41,13 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<Object> handleResponseStatusException(ResponseStatusException e) {
+    public ResponseEntity<?> handleResponseStatusException(ResponseStatusException e) {
         log.error("ResponseStatusException - HttpStatus.UNAUTHORIZED: {}", e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGenericException(Exception e) {
+    public ResponseEntity<?> handleGenericException(Exception e) {
         log.error("Exception - HttpStatus.INTERNAL_SERVER_ERROR: {}", e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

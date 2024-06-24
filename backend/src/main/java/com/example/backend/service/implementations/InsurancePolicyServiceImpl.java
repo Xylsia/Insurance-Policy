@@ -52,7 +52,7 @@ public class InsurancePolicyServiceImpl implements IInsurancePolicyService {
     @Override
     public void deleteInsurancePolicy(Long id) {
         Optional<InsurancePolicy> existingPolicy = insurancePolicyRepository.findById(id);
-        if (existingPolicy.isEmpty()) {
+        if (existingPolicy.isPresent()) {
             insurancePolicyRepository.deleteById(id);
         } else {
             throw new NoSuchElementException("Insurance Policy with id: " + id + " was not found");

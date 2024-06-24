@@ -25,13 +25,13 @@ public class AgentController {
     private final AgentServiceImpl agentService;
     private final AgentTokenServiceImpl agentTokenService;
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<AgentDTO> createAgent(@Valid @RequestBody AgentDTO agentDTO) {
         return new ResponseEntity<>(agentService.createAgent(agentDTO), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAgent(@PathVariable("id") Long id) {
         agentService.deleteAgent(id);
@@ -88,14 +88,16 @@ public class AgentController {
 
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @PutMapping("/language-preference")
-    public ResponseEntity<Map<String, String>> updateLanguagePreference(@RequestBody LanguagePreferenceDTO languagePreferenceDTO) {
+    public ResponseEntity<Map<String, String>> updateLanguagePreference(
+            @RequestBody LanguagePreferenceDTO languagePreferenceDTO) {
         String newToken = agentService.updateLanguagePreference(languagePreferenceDTO);
         return ResponseEntity.ok(Collections.singletonMap("token", newToken));
     }
 
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @PutMapping("/theme-preference")
-    public ResponseEntity<Map<String, String>> updateThemePreference(@RequestBody ThemePreferenceDTO themePreferenceDTO) {
+    public ResponseEntity<Map<String, String>> updateThemePreference(
+            @RequestBody ThemePreferenceDTO themePreferenceDTO) {
         String newToken = agentService.updateThemePreference(themePreferenceDTO);
         return ResponseEntity.ok(Collections.singletonMap("token", newToken));
     }

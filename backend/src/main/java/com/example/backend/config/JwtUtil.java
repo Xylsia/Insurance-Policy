@@ -48,6 +48,7 @@ public class JwtUtil {
                 .claim("userId", agent.getId())
                 .claim("languagePreference", agent.getLanguagePreference())
                 .claim("themePreference", agent.getThemePreference())
+                .claim("userName", agent.getFirstName() + " " + agent.getLastName())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()), SignatureAlgorithm.HS256)

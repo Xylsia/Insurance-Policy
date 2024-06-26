@@ -5,7 +5,7 @@
 - It was developed as part of a post-graduate training program.
 
 ## Technologies and Tools
-- **Languages**: HTML, CSS, SCSS, TypeScript, Java
+- **Languages**: TypeScript, Java, HTML, CSS, SCSS
 - **Libraries / Frameworks**: React, Spring Boot
 - **Databases**: MySQL
-- **Tools**: Swagger, Flyway
+- **Tools**: Swagger, Flyway, Vite

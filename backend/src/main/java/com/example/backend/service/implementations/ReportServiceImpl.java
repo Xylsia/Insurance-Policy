@@ -63,8 +63,10 @@ public class ReportServiceImpl implements IReportService {
                 Row row = sheet.createRow(rowNum++);
                 row.createCell(0).setCellValue(policy.getId());
                 row.createCell(1).setCellValue(policy.getDateCreated().toString());
-                row.createCell(2).setCellValue(policy.getAgent().getFirstName() + " " + policy.getAgent().getLastName());
-                row.createCell(3).setCellValue(policy.getRequester().getFirstName() + " " + policy.getRequester().getLastName());
+                row.createCell(2).setCellValue(
+                        policy.getAgent().getFirstName() + " " + policy.getAgent().getLastName());
+                row.createCell(3).setCellValue(
+                        policy.getRequester().getFirstName() + " " + policy.getRequester().getLastName());
                 row.createCell(4).setCellValue(policy.getInsuranceItem().toString());
 
                 Set<String> coverages = policy.getCoverages().stream()

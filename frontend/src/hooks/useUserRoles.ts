@@ -24,7 +24,7 @@ export const useUserRoles = () => {
 
       const data: string[] = await response.json();
       setUserRoleLise(data);
-      console.log(`agent/user-roles response:\n ${data}`);
+      console.log(`agent/user-roles response:\n`, data);
     } catch (error: unknown) {
       if (error instanceof Error) {
         error.name === "AbortError"

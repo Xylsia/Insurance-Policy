@@ -1,0 +1,14 @@
+.login-form-c {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-l);
+  align-items: center;
+  width: 50%;
+  box-shadow: var(--box-shadow);
+}
+
+@media (max-width: 768px) {
+  .login-form-c {
+    width: 95%;
+  }
+}

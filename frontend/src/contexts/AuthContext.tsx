@@ -9,7 +9,8 @@ interface MyTokenPayload extends JwtPayload {
   userId?: string;
   languagePreference?: string;
   themePreference?: string;
-  userName?: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 // tells TS that children is expected to be a ReactNode
@@ -23,7 +24,8 @@ interface AuthContextType {
   userId: string | null;
   languagePreference: string | null;
   themePreference: string | null;
-  userName: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
   isAuthenticated: boolean;
   loading: boolean;
   handleLogin: (token: string) => void;
@@ -36,7 +38,8 @@ const defaultState: AuthContextType = {
   userId: null,
   languagePreference: null,
   themePreference: null,
-  userName: null,
+  firstName: null,
+  lastName: null,
   isAuthenticated: false,
   loading: true,
   handleLogin: () => {},
@@ -53,7 +56,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const [userId, setUserId] = useState<string | null>(null);
   const [languagePreference, setLanguagePreference] = useState<string | null>(null);
   const [themePreference, setThemePreference] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string | null>(null);
+  const [firstName, setFirstName] = useState<string | null>(null);
+  const [lastName, setLastName] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -70,7 +74,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           setUserId(decodedToken.userId ?? null);
           setLanguagePreference(decodedToken.languagePreference ?? null);
           setThemePreference(decodedToken.themePreference ?? null);
-          setUserName(decodedToken.userName ?? null);
+          setFirstName(decodedToken.firstName ?? null);
+          setLastName(decodedToken.lastName ?? null);
+          console.log(decodedToken);
         } else {
           handleLogout();
         }
@@ -97,7 +103,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       setUserId(decodedToken.userId ?? null);
       setLanguagePreference(decodedToken.languagePreference ?? null);
       setThemePreference(decodedToken.themePreference ?? null);
-      setUserName(decodedToken.userName ?? null);
+      setFirstName(decodedToken.firstName ?? null);
+      setLastName(decodedToken.lastName ?? null);
+      console.log(decodedToken);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setSnackbar("error", `${t("AuthContextJWTError")} ${error}`);
@@ -114,7 +122,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setUserId(null);
     setLanguagePreference(null);
     setThemePreference(null);
-    setUserName(null);
+    setFirstName(null);
+    setLastName(null);
   };
 
   const value = {
@@ -122,7 +131,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     userId,
     languagePreference,
     themePreference,
-    userName,
+    firstName,
+    lastName,
     isAuthenticated,
     loading,
     handleLogin,

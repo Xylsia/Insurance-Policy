@@ -7,9 +7,9 @@ type ConfirmationModalProps = {
   headerText: string;
   bodyText: string;
   confirmBtnLabel: string;
-  itemId?: number;
+  itemId: number;
   onClose: () => void;
-  onConfirm: (id?: number) => void;
+  onConfirm: (id: number) => void;
 };
 
 export const ConfirmationModal = ({

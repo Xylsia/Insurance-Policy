@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .sessionManagement((session) -> session.sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS))
                 .logout(logout -> {
-                    logout.logoutUrl("/Logout");
+                    logout.logoutUrl("/logout");
                     logout.logoutSuccessUrl("/agent/login");
                     logout.invalidateHttpSession(true);
                     logout.deleteCookies("JSESSIONID");

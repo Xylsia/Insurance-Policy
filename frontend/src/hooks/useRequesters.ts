@@ -25,7 +25,7 @@ export const useRequesters = () => {
 
       const data: RequesterModel[] = await response.json();
       setRequesterList(data);
-      console.log(`requester/list response:\n ${data}`);
+      console.log(`requester/list response:\n`, data);
     } catch (error: unknown) {
       if (error instanceof Error) {
         error.name === "AbortError"

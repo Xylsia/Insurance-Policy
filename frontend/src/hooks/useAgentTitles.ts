@@ -24,7 +24,7 @@ export const useAgentTitles = () => {
 
       const data: string[] = await response.json();
       setAgentTitleList(data);
-      console.log(`agent/agent-titles response:\n ${data}`);
+      console.log("agent/agent-titles response:\n", data);
     } catch (error: unknown) {
       if (error instanceof Error) {
         error.name === "AbortError"

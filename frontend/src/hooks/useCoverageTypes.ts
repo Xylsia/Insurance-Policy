@@ -63,7 +63,7 @@ export const useCoverageTypes = (selectedItem: string) => {
 
       const data: string[] = await response.json();
       setCoverageTypeList(data);
-      console.log(`insurance-policy/coverage-types/${selectedItem} response:\n ${data}`);
+      console.log(`insurance-policy/coverage-types/${selectedItem} response:\n`, data);
     } catch (error: unknown) {
       if (error instanceof Error) {
         error.name === "AbortError"

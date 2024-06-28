@@ -48,7 +48,7 @@ export const usePolicies = () => {
           ? setPolicyList(data)
           : setPolicyList((prevPolicies) => [...prevPolicies, ...data]);
 
-        console.log(`insurance-policy/search?${params.toString()} response:\n ${data}`);
+        console.log("insurance-policy/search response:\n", data);
 
         data.length < PAGE_SIZE ? setHasMore(false) : setHasMore(true);
 

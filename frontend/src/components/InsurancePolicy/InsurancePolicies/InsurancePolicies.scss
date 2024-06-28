@@ -1,0 +1,54 @@
+.insurance-policy-form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-l);
+  align-items: center;
+
+  .table-container {
+    width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+}
+
+.create-search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--gap-s);
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .search-field-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+
+      input {
+        width: 100%;
+        padding: var(--padding-s) var(--padding-l) var(--padding-s) var(--padding-s);
+        border-radius: var(--border-radius);
+        border: var(--border-width-m) var(--border-style) var(--primary-dark);
+      }
+
+      .svg-icon {
+        position: absolute;
+        right: 0;
+        margin-right: var(--margin-s);
+      }
+    }
+  }
+
+  button {
+    white-space: nowrap;
+    padding: var(--padding-s);
+  }
+}

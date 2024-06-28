@@ -25,7 +25,7 @@ export const useAgents = () => {
 
       const data: AgentModel[] = await response.json();
       setAgentList(data);
-      console.log(`agent/list response:\n ${data}`);
+      console.log("agent/list response:\n", data);
     } catch (error: unknown) {
       if (error instanceof Error) {
         error.name === "AbortError"

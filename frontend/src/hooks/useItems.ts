@@ -24,7 +24,7 @@ export const useItems = () => {
 
       const data: string[] = await response.json();
       setItemList(data);
-      console.log(`insurance-policy/insurance-items response:\n ${data}`);
+      console.log(`insurance-policy/insurance-items response:\n`, data);
     } catch (error: unknown) {
       if (error instanceof Error) {
         error.name === "AbortError"

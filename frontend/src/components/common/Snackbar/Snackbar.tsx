@@ -34,7 +34,7 @@ export const Snackbar: React.FC = () => {
       <div className="snackbar-close-icon">
         <PrimaryButton
           type="button"
-          style="btn rm-default-btn"
+          style="rm-default-btn"
           action={hideSnackbar}
           icon={<MdClose />}
         />

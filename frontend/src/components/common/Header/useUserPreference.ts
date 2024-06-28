@@ -33,7 +33,7 @@ export const useUserPreference = () => {
       if (NOT_ACCEPTED_VALS.includes(newToken.token)) {
         return;
       }
-      handleLogin(newToken);
+      handleLogin(newToken.token);
       setSnackbar("success", t("userPrefLangSnackbarSuccess"));
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -68,11 +68,11 @@ export const useUserPreference = () => {
       if (NOT_ACCEPTED_VALS.includes(newToken.token)) {
         return;
       }
-      handleLogin(newToken);
-      setSnackbar("success", t("userPrefLangSnackbarSuccess"));
+      handleLogin(newToken.token);
+      setSnackbar("success", t("userPrefThemeSnackbarSuccess"));
     } catch (error: unknown) {
       if (error instanceof Error) {
-        setSnackbar("error", `${t("userPrefLangSnackbarError")}: ${error}`);
+        setSnackbar("error", `${t("userPrefThemeSnackbarError")}: ${error}`);
       } else {
         setSnackbar("error", t("snackbarUnexpectedError"));
       }

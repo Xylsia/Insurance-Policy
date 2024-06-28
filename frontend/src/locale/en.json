@@ -31,7 +31,7 @@
     "userPrefThemeSnackbarSuccess": "Theme has been changed successfully",
     "userPrefThemeSnackbarError": "There was an error updating theme preference",
 
-    "dashboardTitle": "InsurancePolicies",
+    "dashboardTitle": "Insurance Policies",
     "insurancePoliciesSearchPlaceholder": "Find policies by requester, agent, item type, date, price",
     "insurancePoliciesCreatePolicyBtn": "Create Policy",
     "insurancePoliciesExportBtn": "Export Policies",

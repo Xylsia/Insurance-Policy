@@ -9,6 +9,10 @@
     width: 100%;
     border-radius: var(--border-radius);
     overflow: hidden;
+
+    .infinite-scroll-span {
+      color: var(--body-font);
+    }
   }
 }
 

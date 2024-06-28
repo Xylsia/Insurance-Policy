@@ -29,7 +29,7 @@ export const ConfirmationModal = ({
           <h2>{headerText}</h2>
           <PrimaryButton
             type="button"
-            style="svg-icon rm-defult-btn"
+            style="rm-default-btn svg-icon"
             action={onClose}
             icon={<MdClose />}
           />

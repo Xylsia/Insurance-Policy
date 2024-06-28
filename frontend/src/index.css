@@ -118,7 +118,7 @@ select {
   color: var(--body-font);
 }
 
-input:placeholder,
-select:placeholder {
+input::placeholder,
+select::placeholder {
   color: var(--body-font);
 }

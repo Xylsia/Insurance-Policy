@@ -1,0 +1,142 @@
+.create-policy-form-c {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-xl);
+  padding: var(--padding-l);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: var(--margin-l);
+
+  .create-insurance-policy-form-c {
+    width: 100%;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-l);
+
+      .create-choose-requester {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .create-policy-form-grp,
+        .create-new-requester-c {
+          width: 44%;
+        }
+
+        label {
+          white-space: nowrap;
+        }
+
+        b {
+          color: var(--primary-dark);
+          align-self: center;
+        }
+      }
+
+      .create-policy-form-grp {
+        display: flex;
+        flex-direction: column;
+
+        .create-policy-form-grp-content {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: var(--gap-s);
+
+          .estimated-price-input-range {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-m);
+            width: 100%;
+          }
+        }
+
+        .checkboxes-grp {
+          display: flex;
+          flex-direction: column;
+          gap: var(--gap-m);
+
+          .coverage-types {
+            display: flex;
+            flex-direction: row;
+            gap: var(--gap-s) var(--gap-l);
+            flex-wrap: wrap;
+
+            .one-coverage-type,
+            input,
+            label {
+              cursor: pointer;
+              display: flex;
+              gap: var(--gap-s);
+            }
+
+            .one-coverage-type input[type="checkbox"] {
+              transform: scale(1.5);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .create-new-requester-c {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+
+    .create-new-requester {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--gap-s);
+    }
+  }
+
+  .create-form-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: var(--margin-l);
+
+    button {
+      width: 20%;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .create-policy-form-c {
+    width: 95%;
+
+    .create-insurance-policy-form-c {
+      form {
+        .create-choose-requester {
+          flex-direction: column;
+
+          .create-policy-form-grp,
+          .create-new-requester-c {
+            width: 100%;
+          }
+
+          label {
+            white-space: unset;
+          }
+
+          b {
+            margin: var(--margin-m);
+          }
+        }
+      }
+    }
+  }
+}

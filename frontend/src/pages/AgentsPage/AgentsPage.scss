@@ -1,0 +1,42 @@
+.page-title-and-create-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 90%;
+  padding-top: var(--padding-xl);
+
+  h1 {
+    margin-left: 7rem;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .create-policy-btn {
+    margin-left: auto;
+
+    button {
+      white-space: nowrap;
+      padding: var(--padding-s);
+    }
+  }
+}
+
+.agents-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-l);
+  align-items: center;
+  width: 90%;
+  box-shadow: var(--box-shadow);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: var(--padding-xl);
+  margin-bottom: var(--margin-l);
+}
+
+@media (max-width: 992px) {
+  .agents-container,
+  .page-title-and-create-btn {
+    width: 95%;
+  }
+}

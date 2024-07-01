@@ -1,8 +1,8 @@
+DROP TABLE IF EXISTS `insurance_policy_coverage`;
+DROP TABLE IF EXISTS `insurance_policy`;
+DROP TABLE IF EXISTS `agent_token`;
 DROP TABLE IF EXISTS `agent`;
 DROP TABLE IF EXISTS `requester`;
-DROP TABLE IF EXISTS `agent_token`;
-DROP TABLE IF EXISTS `insurance_policy`;
-DROP TABLE IF EXISTS `insurance_policy_coverage`;
 
 CREATE TABLE `agent` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,

@@ -39,6 +39,11 @@ export const useRequesters = () => {
     }
   };
 
+  const refreshRequesterList = async () => {
+    const abortController = new AbortController();
+    getItems(abortController.signal);
+  };
+
   useEffect(() => {
     const abortController = new AbortController();
     getItems(abortController.signal);
@@ -48,5 +53,5 @@ export const useRequesters = () => {
     };
   }, []);
 
-  return { requesterList, isLoading };
+  return { requesterList, refreshRequesterList, isLoading };
 };

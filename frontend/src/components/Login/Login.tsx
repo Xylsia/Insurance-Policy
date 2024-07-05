@@ -103,7 +103,7 @@ export const Login = () => {
       </div>
       <div className="login-form-elem">
         <input
-          type="text"
+          type="password"
           placeholder="EnterPassword..."
           name="password"
           value={password}

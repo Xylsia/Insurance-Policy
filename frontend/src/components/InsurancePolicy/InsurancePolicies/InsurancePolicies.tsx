@@ -142,7 +142,7 @@ export const InsurancePolicies = () => {
             </div>
           </div>
         </form>
-        <Link to="create-policy" className="create-policy-btn">
+        <Link to="/create-policy" className="create-policy-btn">
           <PrimaryButton
             type="button"
             style="btn btn-success"

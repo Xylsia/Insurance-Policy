@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import ReactDatePicker from "react-datepicker";
 import { PrimaryButton } from "../Button/PrimaryButton";
 import { MdClose } from "react-icons/md";
+import "react-datepicker/dist/react-datepicker.css";
 
 type ExportModalProps = {
   headerText: string;

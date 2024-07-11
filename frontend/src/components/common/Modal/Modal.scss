@@ -98,8 +98,8 @@
 // ReactDatePicker component
 .react-datepicker-wrapper {
   .react-datepicker__input-container input {
-    width: 13rem;
     cursor: pointer;
+    padding-right: 1.5rem;
   }
 
   .react-close-icon::after {

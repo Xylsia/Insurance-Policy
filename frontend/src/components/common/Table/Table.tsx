@@ -1,4 +1,5 @@
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
 import { PrimaryButton } from "../Button/PrimaryButton";
 import "./Table.scss";
 
@@ -15,11 +16,20 @@ interface TableData {
 interface TableProps {
   headers: TableHeader[];
   data: TableData[];
+  showEdit?: boolean;
+  onEdit?: (id: number) => void;
   showDelete?: boolean;
   onDelete?: (id: number) => void;
 }
 
-export const Table = ({ headers, data, showDelete = false, onDelete }: TableProps) => {
+export const Table = ({
+  headers,
+  data,
+  showDelete = false,
+  onDelete,
+  showEdit = false,
+  onEdit,
+}: TableProps) => {
   return (
     <table>
       <thead>
@@ -27,7 +37,7 @@ export const Table = ({ headers, data, showDelete = false, onDelete }: TableProp
           {headers.map((header) => (
             <th key={header.id}>{header.title}</th>
           ))}
-          {showDelete && <th></th>}
+          {(showEdit || showDelete) && <th></th>}
         </tr>
       </thead>
       <tbody>
@@ -36,14 +46,24 @@ export const Table = ({ headers, data, showDelete = false, onDelete }: TableProp
             {headers.map((header) => (
               <td key={`${id}-${header.id}`}>{item[header.field]}</td>
             ))}
-            {showDelete && (
+            {(showEdit || showDelete) && (
               <td>
-                <PrimaryButton
-                  type="button"
-                  style="trashcan-btn rm-default-btn"
-                  action={() => onDelete && onDelete(item.id)}
-                  icon={<MdOutlineDeleteOutline className="icon-trashcan" />}
-                />
+                {showEdit && (
+                  <PrimaryButton
+                    type="button"
+                    style="rm-default-btn svg-icon"
+                    action={() => onEdit && onEdit(item.id)}
+                    icon={<BiEdit className="icon-edit" />}
+                  />
+                )}
+                {showDelete && (
+                  <PrimaryButton
+                    type="button"
+                    style="rm-default-btn svg-icon"
+                    action={() => onDelete && onDelete(item.id)}
+                    icon={<MdOutlineDeleteOutline className="icon-delete" />}
+                  />
+                )}
               </td>
             )}
           </tr>

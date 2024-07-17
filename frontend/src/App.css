@@ -24,6 +24,7 @@
   width: var(--svg-icon-size-s);
   height: var(--svg-icon-size-s);
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }

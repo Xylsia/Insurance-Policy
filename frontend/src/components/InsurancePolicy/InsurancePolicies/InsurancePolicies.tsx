@@ -127,6 +127,10 @@ export const InsurancePolicies = () => {
     await exportPolicies(exportPoliciesVals);
   };
 
+  const handleEditPolicyButtonClick = () => {
+    console.log("handleEditPolicyButtonClick");
+  };
+
   return (
     <>
       <div className="create-search-container">
@@ -182,6 +186,8 @@ export const InsurancePolicies = () => {
                 <Table
                   headers={tableHeaders}
                   data={tableData}
+                  showEdit={roles === USER_ROLES.ADMIN}
+                  onEdit={roles === USER_ROLES.ADMIN ? handleEditPolicyButtonClick : undefined}
                   showDelete={roles === USER_ROLES.ADMIN}
                   onDelete={roles === USER_ROLES.ADMIN ? handleDeletePolicyButtonClick : undefined}
                 />

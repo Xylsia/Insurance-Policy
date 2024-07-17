@@ -1,7 +1,7 @@
 :root {
   /* Color Palette */
   --primary: #a753c8;
-  --primary-light: #d8aceb;
+  --primary-light: #e5c3f4;
   --primary-lighter: #ead7f2;
   --primary-lightest: #f4eef6;
   --primary-dark: #822ea4;
@@ -16,6 +16,7 @@
   --danger-light: rgb(250 71 71);
   --warning: rgb(236, 192, 50);
   --success: rgb(79, 205, 115);
+  --success-dark: rgb(73, 161, 98);
 
   /* Others */
   --modal-bg: rgba(0, 0, 0, 0.2);
@@ -111,7 +112,7 @@ span {
 
 input,
 select {
-  padding: var(--padding-xs) var(--padding-s);
+  padding: var(--padding-s);
   border-radius: var(--border-radius);
   border: var(--border-width-m) var(--border-style) var(--primary-dark);
   background-color: var(--field-bg);

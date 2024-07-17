@@ -91,7 +91,7 @@ export const useCoverageTypes = (selectedItem: string) => {
         const item = itemsPriceRange.find((item) => item.item === selectedItem.toLocaleUpperCase());
         if (item) {
           setPriceRange(
-            t("useCoverageTypesPriceRange", {
+            t("useCoveragesTypesPriceRange", {
               item: item.item,
               min: item.min,
               max: item.max,

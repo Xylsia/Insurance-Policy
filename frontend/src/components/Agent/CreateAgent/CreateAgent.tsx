@@ -35,7 +35,6 @@ export const CreateAgent = () => {
   const [userRole, setUserRole] = useState<string>("");
   const [agentFormErrors, setAgentFormErrors] = useState(initAgentFormErrors);
 
-  const password = "dummyPassword";
   const languagePreference = USER_LANGUAGE_PREFS.EN;
   const themePreference = USER_THEME_PREFS.LIGHT;
 
@@ -92,7 +91,6 @@ export const CreateAgent = () => {
         phoneNumber: phoneNumber,
         agentTitle: agentTitle,
         userRole: userRole,
-        password: password,
         languagePreference: languagePreference,
         themePreference: themePreference,
       };

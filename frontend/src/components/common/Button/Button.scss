@@ -62,16 +62,17 @@
   outline: inherit;
 }
 
-.trashcan-btn {
-  .icon-trashcan {
-    color: var(--primary);
-    cursor: pointer;
-    width: var(--svg-icon-size-s);
-    height: var(--svg-icon-size-s);
-    transition: var(--transition-s) ease-in-out color;
-  }
+.icon-delete,
+.icon-edit {
+  fill: inherit;
+  cursor: pointer;
+  transition: var(--transition-s) ease-in-out fill;
+}
 
-  .icon-trashcan:hover {
-    color: var(--danger);
-  }
+.icon-delete:hover {
+  fill: var(--danger);
+}
+
+.icon-edit:hover {
+  fill: var(--success-dark);
 }

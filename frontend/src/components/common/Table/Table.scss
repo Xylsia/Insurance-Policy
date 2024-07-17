@@ -30,6 +30,17 @@ table {
       td {
         padding: var(--padding-s);
       }
+
+      td:last-child {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          margin-right: var(--margin-s);
+        }
+      }
     }
 
     tr:nth-child(even) {

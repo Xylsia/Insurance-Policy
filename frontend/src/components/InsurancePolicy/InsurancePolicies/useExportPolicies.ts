@@ -41,7 +41,7 @@ export const useExportPolicies = () => {
         policyIds.forEach((id: any) => reportParams.append("policyIds", id));
 
         if (reportParams.toString() === "") {
-          setSnackbar("error", t("insurancePoliciesSnackbarExportNoPoliciesError"));
+          setSnackbar("error", t("insurancePoliciesModalExportNoPoliciesError"));
         } else {
           const responseGenerateReport = await fetchWrapper({
             url: `${URL}report/generate-report?${reportParams.toString()}`,
@@ -65,7 +65,7 @@ export const useExportPolicies = () => {
           link.parentNode!.removeChild(link);
 
           closeModal();
-          setSnackbar("success", t("insurancePoliciesSnackbarExportSuccess"));
+          setSnackbar("success", t("insurancePoliciesSnackbarExportSucceess"));
         }
       } catch (error: unknown) {
         if (error instanceof Error) {

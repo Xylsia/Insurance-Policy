@@ -122,7 +122,7 @@ public class AgentServiceImpl implements IAgentService {
             Agent agent = agentModel.get();
 
             String email = agentDTO.getEmail();
-            String password = agentDTO.getPassword();
+//            String password = agentDTO.getPassword();
             Optional<Requester> existingRequester = requesterRepository.findByEmail(email);
             Agent existingAgent = agentRepository.findByEmail(email);
 
@@ -140,17 +140,17 @@ public class AgentServiceImpl implements IAgentService {
                 }
                 agent.setEmail(agentDTO.getEmail());
             }
-            if (Objects.nonNull(agentDTO.getPassword())) {
-                String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*/_-])(?=.*[a-zA-Z]).{8,}$";
-                if (!password.matches(passwordRegex)) {
-                    throw new IllegalArgumentException(
-                            "Password must be at least 8 characters " +
-                                    "long with at least one special character, one number, one uppercase " +
-                                    "letter and one lowercase letter");
-                }
-                String encodedPassword = passwordEncoder.encode(password);
-                agent.setPassword(encodedPassword);
-            }
+//            if (Objects.nonNull(agentDTO.getPassword())) {
+//                String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*/_-])(?=.*[a-zA-Z]).{8,}$";
+//                if (!password.matches(passwordRegex)) {
+//                    throw new IllegalArgumentException(
+//                            "Password must be at least 8 characters " +
+//                                    "long with at least one special character, one number, one uppercase " +
+//                                    "letter and one lowercase letter");
+//                }
+//                String encodedPassword = passwordEncoder.encode(password);
+//                agent.setPassword(encodedPassword);
+//            }
             if (Objects.nonNull(agentDTO.getAgentTitle())) {
                 agent.setAgentTitle(agentDTO.getAgentTitle());
             }

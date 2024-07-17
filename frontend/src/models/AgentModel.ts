@@ -5,7 +5,6 @@ export interface AgentModel {
   email: string;
   phoneNumber: string;
   agentTitle: string;
-  password: string;
   userRole: string;
   languagePreference: string;
   themePreference: string;

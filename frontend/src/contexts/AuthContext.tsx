@@ -76,7 +76,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           setThemePreference(decodedToken.themePreference ?? null);
           setFirstName(decodedToken.firstName ?? null);
           setLastName(decodedToken.lastName ?? null);
-          console.log(decodedToken);
         } else {
           handleLogout();
         }
@@ -105,7 +104,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       setThemePreference(decodedToken.themePreference ?? null);
       setFirstName(decodedToken.firstName ?? null);
       setLastName(decodedToken.lastName ?? null);
-      console.log(decodedToken);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setSnackbar("error", `${t("AuthContextJWTError")} ${error}`);

@@ -3,7 +3,6 @@ package com.example.backend.dto;
 import com.example.backend.model.AgentTitle;
 import com.example.backend.model.UserRole;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,9 +15,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AgentDTO extends PersonDTO {
 
-    @Schema(example = "john.doe.123")
-    @NotNull(message = "field password cannot be empty")
-    private String password;
+//    @Schema(example = "john.doe.123")
+//    @NotNull(message = "field password cannot be empty")
+//    private String password;
 
     @Schema(example = "BROKER")
     @NotNull(message = "field agentTitle cannot be empty")

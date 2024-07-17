@@ -67,6 +67,7 @@ export const CreateInsurancePolicy = () => {
     switch (name) {
       case "requester":
         setRequester(value);
+
         break;
       case "selectedItem":
         setSelectedItem(value);
@@ -91,8 +92,8 @@ export const CreateInsurancePolicy = () => {
 
       const formData = {
         dateCreated: dateCreated,
-        agent: { id: userId },
-        requester: { id: requester },
+        agent: { id: Number(userId) },
+        requester: { id: Number(requester) },
         coverages: checkedCoverages,
         insuranceItem: selectedItem,
         estimatedPrice: price,
@@ -116,6 +117,7 @@ export const CreateInsurancePolicy = () => {
         const data: InsurancePolicyModel = await response.json();
         console.log(`insurance-policy/create response:\n`, data);
         setSnackbar("success", t("createPolicySnackbarCreatePolicySuccess"));
+        navigate("/dashboard");
       } catch (error: unknown) {
         if (error instanceof Error) {
           setSnackbar("error", t("createPolicySnackbarCreatePolicyError"));
@@ -156,8 +158,8 @@ export const CreateInsurancePolicy = () => {
                     className={`${policyErrors.requester ? "required-border" : ""}`}
                   >
                     <option value="-1">{t("createPolicyChooseRequesterPlaceholder")}</option>
-                    {requesterList.map((requester, index) => (
-                      <option key={index} value={requester.id}>
+                    {requesterList.map((requester) => (
+                      <option key={requester.id} value={requester.id}>
                         {requester.firstName} {requester.lastName}
                       </option>
                     ))}
@@ -228,7 +230,7 @@ export const CreateInsurancePolicy = () => {
                         <div className="one-coverage-type" key={index}>
                           <input
                             type="checkbox"
-                            id="type"
+                            id={type}
                             name="coverage-type"
                             value={type}
                             onChange={handleCheckboxChange}
@@ -255,6 +257,7 @@ export const CreateInsurancePolicy = () => {
                       <input
                         type="number"
                         id="estimated-price"
+                        name="price"
                         placeholder={t("createPolicyPricePlaceholder")}
                         value={price}
                         onChange={handleEventChange}

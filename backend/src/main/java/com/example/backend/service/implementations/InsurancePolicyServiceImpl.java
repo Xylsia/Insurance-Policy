@@ -66,7 +66,7 @@ public class InsurancePolicyServiceImpl implements IInsurancePolicyService {
         Optional<Agent> existingAgent =
                 agentRepository.findById(insurancePolicyDTO.getAgent().getId());
         Optional<Requester> existingRequester =
-                requesterRepository.findById(insurancePolicyDTO.getAgent().getId());
+                requesterRepository.findById(insurancePolicyDTO.getRequester().getId());
         if (existingAgent.isEmpty()) {
             throw new NoSuchElementException("Agent not found");
         }

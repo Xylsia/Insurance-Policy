@@ -1,6 +1,8 @@
 package com.example.backend.controller;
 
 import com.example.backend.service.implementations.ReportServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,11 @@ public class ReportController {
 
     private final ReportServiceImpl reportService;
 
+    @Operation(
+            summary = "Generate a report based on policy IDs",
+            description = "Generates an Excel report for the given policy IDs. Returns the report as a byte array.",
+            security = @SecurityRequirement(name = "Bearer Authentication")
+    )
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/generate-report")
     public ResponseEntity<byte[]> generateReport(

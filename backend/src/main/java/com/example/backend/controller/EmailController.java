@@ -2,6 +2,8 @@ package com.example.backend.controller;
 
 import com.example.backend.dto.EmailDetailsDTO;
 import com.example.backend.service.implementations.EmailServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ public class EmailController {
     @Value("${spring.mail.username}")
     private String sender;
 
+    @Operation(summary = "Send a simple email", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/send")
     public ResponseEntity<String> sendSimpleEmail(@RequestBody EmailDetailsDTO emailDetailsDTO) {

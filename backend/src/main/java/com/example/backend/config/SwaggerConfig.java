@@ -26,10 +26,11 @@ public class SwaggerConfig {
                 .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
                 .components(new Components()
                         .addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().description("Insurance Policy API")
+                .info(new Info()
                         .title("Insurance Policy API")
+                        .description("Insurance Policy API documentation")
                         .version("1.0.0")
-                        .license(new License().name("insurance_policy")))
+                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Insurance Policy external docs"))
                 .servers(List.of(server));

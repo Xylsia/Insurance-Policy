@@ -32,6 +32,8 @@ public class SecurityConfig {
                 new JwtRequestFilter(userDetailsService, jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> {
+                    authorize.requestMatchers(HttpMethod.GET, "/swagger-ui.html", "/v3/api-docs" +
+                            "/**", "/swagger-ui/**").permitAll();
                     authorize.requestMatchers(HttpMethod.POST, "/agent/login").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "/agent/initial-login").permitAll();
                     authorize.requestMatchers(HttpMethod.POST, "/agent/reset-password").permitAll();

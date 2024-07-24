@@ -4,6 +4,8 @@ import com.example.backend.dto.InsurancePolicyDTO;
 import com.example.backend.model.CoverageType;
 import com.example.backend.model.InsuranceItem;
 import com.example.backend.service.implementations.InsurancePolicyServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class InsurancePolicyController {
 
     private final InsurancePolicyServiceImpl insurancePolicyService;
 
+    @Operation(summary = "Get the list of insurance policies", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/list")
     public ResponseEntity<List<InsurancePolicyDTO>> insurancePolicyList() {
@@ -31,6 +34,7 @@ public class InsurancePolicyController {
         return new ResponseEntity<>(insurancePolicyDTOs, HttpStatus.OK);
     }
 
+    @Operation(summary = "Find an insurance policy by ID", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/id/{id}")
     public ResponseEntity<InsurancePolicyDTO> findInsurancePolicyById(@PathVariable("id") Long id) {
@@ -38,6 +42,7 @@ public class InsurancePolicyController {
         return new ResponseEntity<>(insurancePolicyDTO, HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete an insurance policy by ID", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteInsurancePolicy(@PathVariable("id") Long id) {
@@ -45,6 +50,7 @@ public class InsurancePolicyController {
         return ResponseEntity.ok("Insurance Policy with id: " + id + " has been deleted");
     }
 
+    @Operation(summary = "Create a new insurance policy", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<InsurancePolicyDTO> createInsurancePolicy
@@ -54,6 +60,7 @@ public class InsurancePolicyController {
                 HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Update an existing insurance policy", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @PatchMapping("/update")
     public ResponseEntity<InsurancePolicyDTO> updateInsurancePolicy(
@@ -63,6 +70,7 @@ public class InsurancePolicyController {
         return new ResponseEntity<>(updatedPolicy, HttpStatus.OK);
     }
 
+    @Operation(summary = "Search insurance policies", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/search")
     public ResponseEntity<List<InsurancePolicyDTO>> searchInsurancePolicies(
@@ -79,6 +87,7 @@ public class InsurancePolicyController {
         return ResponseEntity.ok(insurancePolicyDTOs);
     }
 
+    @Operation(summary = "Find insurance policies between dates", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/find-between-dates")
     public ResponseEntity<List<InsurancePolicyDTO>> findInsurancePoliciesBetweenDates(
@@ -97,6 +106,7 @@ public class InsurancePolicyController {
         return ResponseEntity.ok(insurancePolicyDTOs);
     }
 
+    @Operation(summary = "Filter insurance policies by parameters", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/filter-by-params")
     public ResponseEntity<List<InsurancePolicyDTO>> filterInsurancePoliciesByParameters(
@@ -122,6 +132,7 @@ public class InsurancePolicyController {
         return ResponseEntity.ok(insurancePolicyDTOs);
     }
 
+    @Operation(summary = "Filter coverages by item type", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/coverage-types/{itemType}")
     public ResponseEntity<List<CoverageType>> filterCoveragesByItemType(
@@ -132,6 +143,7 @@ public class InsurancePolicyController {
         return ResponseEntity.ok(coverageTypes);
     }
 
+    @Operation(summary = "Get the list of insurance items", security = @SecurityRequirement(name = "Bearer Authentication"))
     @PreAuthorize("hasAnyRole('SALES_AGENT', 'ADMIN')")
     @GetMapping("/insurance-items")
     public InsuranceItem[] getInsuranceItems() {

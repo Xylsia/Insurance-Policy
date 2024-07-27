@@ -2,7 +2,8 @@
 
 ## Description
 - Insurnace Policy is a web application for managing insurance policies.
-- It was developed as part of a post-graduate training program.
+- Developed as part of a post-graduate training program.
+- Currently only some of the apis are being used on the frontend
 
 ## Technologies and Tools
 - **Languages**: TypeScript, Java, HTML, CSS, SCSS

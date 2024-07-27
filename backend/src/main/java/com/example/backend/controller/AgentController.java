@@ -28,7 +28,8 @@ public class AgentController {
     private final AgentTokenServiceImpl agentTokenService;
 
 
-    @Operation(summary = "Create an agent", security = @SecurityRequirement(name = "Bearer Authentication"))    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Create an agent", security = @SecurityRequirement(name = "Bearer Authentication"))
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<AgentDTO> createAgent(@Valid @RequestBody AgentDTO agentDTO) {
         return new ResponseEntity<>(agentService.createAgent(agentDTO), HttpStatus.CREATED);
